@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TaskListViewController: UITableViewController {
+final class TaskListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +15,8 @@ class TaskListViewController: UITableViewController {
     }
     
     private func addNewTask() {
-        
+        let taskVC = TaskViewController()
+        present(taskVC, animated: true)
     }
 }
 
