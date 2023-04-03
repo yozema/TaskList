@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 /// Протокол, определяющий методы для создания кнопок
 protocol ButtonFactory {
@@ -42,6 +43,7 @@ class CustomButtonFactory: ButtonFactory {
 }
 
 final class TaskViewController: UIViewController {
+    private let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     private lazy var taskTextField: UITextField = {
         let textField = UITextField()
@@ -81,6 +83,16 @@ final class TaskViewController: UIViewController {
     }
     
     private func save() {
+        let task = Task(context: viewContext)
+        task.title = taskTextField.text
+        
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                print(error)
+            }
+        }
         dismiss(animated: true)
     }
 }
