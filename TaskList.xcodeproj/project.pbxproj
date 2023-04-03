@@ -13,7 +13,6 @@
 		9CDD074729D9FB7A00B3EA8B /* TaskList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CDD074529D9FB7A00B3EA8B /* TaskList.xcdatamodeld */; };
 		9CDD074929D9FB7B00B3EA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CDD074829D9FB7B00B3EA8B /* Assets.xcassets */; };
 		9CDD074C29D9FB7B00B3EA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CDD074A29D9FB7B00B3EA8B /* LaunchScreen.storyboard */; };
-		9CDD075429DA19DF00B3EA8B /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDD075329DA19DF00B3EA8B /* TaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		9CDD074829D9FB7B00B3EA8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CDD074B29D9FB7B00B3EA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CDD074D29D9FB7B00B3EA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CDD075329DA19DF00B3EA8B /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +59,6 @@
 				9CDD073C29D9FB7A00B3EA8B /* AppDelegate.swift */,
 				9CDD073E29D9FB7A00B3EA8B /* SceneDelegate.swift */,
 				9CDD074029D9FB7A00B3EA8B /* TaskListViewController.swift */,
-				9CDD075329DA19DF00B3EA8B /* TaskViewController.swift */,
 				9CDD074829D9FB7B00B3EA8B /* Assets.xcassets */,
 				9CDD074A29D9FB7B00B3EA8B /* LaunchScreen.storyboard */,
 				9CDD074D29D9FB7B00B3EA8B /* Info.plist */,
@@ -142,7 +139,6 @@
 			files = (
 				9CDD074729D9FB7A00B3EA8B /* TaskList.xcdatamodeld in Sources */,
 				9CDD074129D9FB7A00B3EA8B /* TaskListViewController.swift in Sources */,
-				9CDD075429DA19DF00B3EA8B /* TaskViewController.swift in Sources */,
 				9CDD073D29D9FB7A00B3EA8B /* AppDelegate.swift in Sources */,
 				9CDD073F29D9FB7A00B3EA8B /* SceneDelegate.swift in Sources */,
 			);
