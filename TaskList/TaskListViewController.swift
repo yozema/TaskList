@@ -6,21 +6,39 @@
 //
 
 import UIKit
+import CoreData
+
+protocol TaskViewControllerDelegate: AnyObject {
+    func reloadData()
+}
 
 final class TaskListViewController: UITableViewController {
     
     private let cellID = "task"
     private var taskList: [Task] = []
+    private let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         setupNavigationBar()
+        fetchData()
     }
     
     private func addNewTask() {
         let taskVC = TaskViewController()
+        taskVC.delegate = self
         present(taskVC, animated: true)
+    }
+    
+    private func fetchData() {
+        let fetchRequest = Task.fetchRequest()
+        
+        do {
+            taskList = try viewContext.fetch(fetchRequest)
+        } catch {
+            print(error)
+        }
     }
 }
 
@@ -61,5 +79,13 @@ extension TaskListViewController {
         content.text = task.title
         cell.contentConfiguration = content
         return cell
+    }
+}
+
+// MARK: - TaskViewControllerDelegate
+extension TaskListViewController: TaskViewControllerDelegate {
+    func reloadData() {
+        fetchData()
+        tableView.reloadData()
     }
 }

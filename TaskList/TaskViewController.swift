@@ -43,6 +43,8 @@ class CustomButtonFactory: ButtonFactory {
 }
 
 final class TaskViewController: UIViewController {
+    weak var delegate: TaskViewControllerDelegate!
+    
     private let viewContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     private lazy var taskTextField: UITextField = {
@@ -89,6 +91,7 @@ final class TaskViewController: UIViewController {
         if viewContext.hasChanges {
             do {
                 try viewContext.save()
+                delegate.reloadData()
             } catch {
                 print(error)
             }
