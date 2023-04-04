@@ -50,10 +50,17 @@ final class StorageManager {
             return try viewContext.fetch(fetchRequest)
         } catch {
             print(error)
-            return []
         }
+        return []
     }
     
+    // MARK: - Edit Task
+    func edit(_ task: Task, newTitle: String) {
+        task.title = newTitle
+        saveContext()
+    }
+    
+    // MARK: - Delete Task
     func delete(_ task: Task) {
         viewContext.delete(task)
         saveContext()
