@@ -22,10 +22,10 @@ final class TaskListViewController: UITableViewController {
     }
     
     private func addNewTask() {
-        createAlert()
+        showAlert()
     }
    
-    private func createAlert(task: Task? = nil, completion: (() -> Void)? = nil) {
+    private func showAlert(task: Task? = nil, completion: (() -> Void)? = nil) {
         let title = task != nil ? "Update Task" : "New Task"
 
         let alert = AlertController(
@@ -119,7 +119,7 @@ extension TaskListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        createAlert(task: taskList[indexPath.row]) {
+        showAlert(task: taskList[indexPath.row]) {
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
