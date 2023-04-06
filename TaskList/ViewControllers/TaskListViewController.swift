@@ -16,7 +16,6 @@ final class TaskListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        taskList = storageManager.fetchData()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         setupNavigationBar()
     }
@@ -36,35 +35,28 @@ final class TaskListViewController: UITableViewController {
 
         alert.action(task: task) { [weak self] taskName in
             if let task = task, let completion = completion {
-                self?.storageManager.edit(task, newTitle: taskName)
+                self?.storageManager.edit(task, newName: taskName)
                 completion()
-            } else {
-                self?.save(taskName)
+                return
             }
+            
+            self?.save(taskName: taskName)
         }
 
         present(alert, animated: true)
     }
     
-    private func save(_ taskName: String) {
-        let task = Task(context: storageManager.viewContext)
-        task.title = taskName
-        taskList.append(task)
-        
-        let indexPath = IndexPath(row: taskList.count - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        
-        if storageManager.viewContext.hasChanges {
-            do {
-                try storageManager.viewContext.save()
-            } catch {
-                print(error)
-            }
+    private func save(taskName: String) {
+        storageManager.create(taskName) { [unowned self] task in
+            taskList.append(task)
+            tableView.insertRows(
+                at: [IndexPath(row: self.taskList.count - 1, section: 0)],
+                with: .automatic)
         }
     }
     
     private func edit(_ taskName: String, _ indexPath: IndexPath) {
-        storageManager.edit(taskList[indexPath.row], newTitle: taskName)
+        storageManager.edit(taskList[indexPath.row], newName: taskName)
         taskList[indexPath.row].title = taskName
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
@@ -119,7 +111,8 @@ extension TaskListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        showAlert(task: taskList[indexPath.row]) {
+        let task = taskList[indexPath.row]
+        showAlert(task: task) {
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
